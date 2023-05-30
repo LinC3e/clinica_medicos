@@ -42,7 +42,8 @@ public class MedicoController {
                 )
         );
         // URL donde encontrar la creacion
-        URI url = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
+        URI url;
+        url = uriComponentsBuilder.path("/medicos/{id}").buildAndExpand(medico.getId()).toUri();
         return ResponseEntity.created(url).body(datosRespuestaMedico);
     }
 
