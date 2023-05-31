@@ -16,7 +16,11 @@ public class SecurityFilter extends OncePerRequestFilter {
         System.out.println("El filtro esta siendo llamado");
 
         // Obtener el token del header
-        var token = request.getHeader("Authorization").replace("Bearer", "");
+        var token = request.getHeader("Authorization");//.replace("Bearer", "");
+        if(token == null || token == ""){
+            throw new RuntimeException("El token envidado no es valido");
+        }
+        token = token.replace("Bearer", "");
         System.out.println(token);
         filterChain.doFilter(request,response);
     }
